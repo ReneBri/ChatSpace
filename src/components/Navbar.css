@@ -1,0 +1,33 @@
+.nav-bar {
+    width: 100vw;
+    background-color: lightblue;
+}
+
+.nav-bar nav {
+    width: 80%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: auto;
+    align-items: center;
+}
+
+.nav-bar h3 {
+    font-size: 1.6em;
+    padding: 10px;
+}
+
+.nav-bar nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.nav-bar nav li {
+    padding: 10px;
+}
+.nav-bar nav a {
+    cursor: pointer;
+    text-decoration: none;
+    color: black;
+}

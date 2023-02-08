@@ -8,13 +8,11 @@
 }
 
 .signup-wrapper form {
-    display: flex;
-    flex-direction: column;
     width: 200px;
 }
 
 .signup-wrapper form label {
     display: flex;
     flex-direction: column;
-    padding: 5px 0;
+    padding: 10px 0;
 }
