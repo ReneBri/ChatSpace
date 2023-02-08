@@ -1,0 +1,20 @@
+.signup-wrapper {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+.signup-wrapper form {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.signup-wrapper form label {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+}
