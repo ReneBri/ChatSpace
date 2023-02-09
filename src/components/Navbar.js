@@ -23,11 +23,14 @@ export default function Navbar() {
             <ul>
                 {!user && 
                 <>
-                <li><NavLink to="/signup">Signup</NavLink></li>
-                <li><NavLink to="/login">Login</NavLink></li>
+                  <li><NavLink to="/signup">Signup</NavLink></li>
+                  <li><NavLink to="/login">Login</NavLink></li>
                 </>}
                 {user &&
-                <li onClick={logout}><a href="#">Logout</a></li>}
+                <>
+                  <li>hello, {user.displayName}</li>
+                  <li onClick={logout}><a href="#">Logout</a></li>
+                </>}
             </ul>
         </nav>
     </div>

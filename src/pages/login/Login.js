@@ -50,7 +50,7 @@ export default function Login() {
           />
         </label>
 
-        {!isPending && <button>Signup</button>}
+        {!isPending && <button>Login</button>}
         {isPending && <button disabled>loading...</button>}
         {error && <p>{error}</p>}
       </form>
