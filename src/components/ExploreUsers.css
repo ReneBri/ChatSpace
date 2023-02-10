@@ -8,6 +8,7 @@
     flex-direction: row;
     padding: 10px;
     align-items: center;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
 }
 
 .user-thumbnail-img {
