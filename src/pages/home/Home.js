@@ -1,12 +1,20 @@
+// styles 
 import './Home.css'
+
+// context
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 
 export default function Home() {
+
+  const { user } = useAuthContext()
+
+
   return (
     <div className="main-wrapper">
 
       <div className="welcome-container">
-        <h1>Welcome Back, René</h1>
+        <h1>Welcome Back, {user.firstName}</h1>
       </div>
 
       <div className="main-content-container">

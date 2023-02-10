@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useAuthContext } from './useAuthContext'
 import { projectAuth } from '../config/config'
+import { projectFirestore } from '../config/config'
 
 
 export const useSignup = () => {
@@ -10,27 +11,46 @@ export const useSignup = () => {
     const [error, setError] = useState(null)
     const [isCancelled, setIsCancelled] = useState(false)
 
-    const signup = async (email, password, displayName) => {
+    const signup = async (email, password, firstName, lastName, age, currentCity, hometown, status) => {
 
         setIsPending(true)
         setError(null)
 
         try {
             const res = await projectAuth.createUserWithEmailAndPassword(email, password)
-            console.log(res)
+            console.log(res.user.uid)
 
             if (!res) {
                 throw new Error('could not complete signup')
-             }
+            }
 
-             await res.user.updateProfile({ displayName })
+            // create profile document here
+            const userObject = {
+                firstName,
+                lastName,
+                age,
+                currentCity,
+                hometown,
+                status,
+                userId: res.user.uid,
+                friendList: [],
+                coverPhotoUrl: "",
+                isOnline: true,
+                email
+            }
 
-             dispatch({ type: 'LOGIN', payload: res.user})
+            console.log(userObject)
 
-            //  if (!isCancelled) {
+            await projectFirestore.collection('userProfiles').doc(res.user.uid).set(userObject)
+            
+            ///////////////////////////////
+
+            dispatch({ type: 'LOGIN', payload: res.user})
+
+            if (!isCancelled) {
                 setIsPending(false)
                 setError(null)
-            // }
+            }
         }
         catch (err) {
             if (!isCancelled){

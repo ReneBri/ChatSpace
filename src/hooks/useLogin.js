@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useAuthContext } from './useAuthContext'
-import { projectAuth } from '../config/config'
+import { projectAuth, projectFirestore } from '../config/config'
 
 
 export const useLogin = () => {
@@ -15,9 +15,12 @@ export const useLogin = () => {
         setError(null)
 
         try {
+            // signs in and recieves a response token from Firebase
             const res = await projectAuth.signInWithEmailAndPassword(email, password)
-
-            dispatch({ type: 'LOGIN', payload: res.user })
+            // fetches the user profile document associated with that users firebase id
+            const userProfileDocument = await projectFirestore.collection('userProfiles').doc(res.user.uid).get()
+            // concats the user profile data and the firebase user data
+            dispatch({ type: 'LOGIN', payload: { ...res.user, ...userProfileDocument.data() } })
 
             if (!isCancelled) {
                 setIsPending(false)

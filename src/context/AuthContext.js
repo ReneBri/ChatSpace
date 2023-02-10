@@ -1,6 +1,6 @@
 // hooks
 import { createContext, useEffect, useReducer } from 'react'
-import { projectAuth } from '../config/config'
+import { projectAuth, projectFirestore } from '../config/config'
 
 export const AuthContext = createContext()
 
@@ -29,7 +29,11 @@ export const AuthContextProvider = ({children}) => {
     //checking for user upon refresh of first load
     useEffect(() => {
         const unsub = projectAuth.onAuthStateChanged((user) => {
-            dispatch({ type: 'AUTH_IS_READY', payload: user })
+            // concats the user profile data and the firebase user data
+            projectFirestore.collection('userProfiles').doc(user.uid).get()
+                .then((doc) => {
+                    dispatch({ type: 'AUTH_IS_READY', payload: { ...user, ...doc.data() } }) 
+                })
             unsub()
         })
     }, [])
