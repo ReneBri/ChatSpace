@@ -30,10 +30,15 @@ export const AuthContextProvider = ({children}) => {
     useEffect(() => {
         const unsub = projectAuth.onAuthStateChanged((user) => {
             // concats the user profile data and the firebase user data
-            projectFirestore.collection('userProfiles').doc(user.uid).get()
+            if (user) {
+                projectFirestore.collection('userProfiles').doc(user.uid).get()
                 .then((doc) => {
                     dispatch({ type: 'AUTH_IS_READY', payload: { ...user, ...doc.data() } }) 
                 })
+            } else {
+                dispatch({ type: 'AUTH_IS_READY', payload: user })
+            }
+            
             unsub()
         })
     }, [])

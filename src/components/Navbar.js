@@ -28,7 +28,7 @@ export default function Navbar() {
                 </>}
                 {user &&
                 <>
-                  <li>hello, {user.displayName}</li>
+                  <li>Hello, {user.firstName}</li>
                   <li onClick={logout}><a href="#">Logout</a></li>
                 </>}
             </ul>
