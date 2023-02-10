@@ -21,7 +21,7 @@ export default function Login() {
   }
 
   return (
-    <div className="login-wrapper">
+    <div className="login-wrapper signup-wrapper">
 
       <div className="login-header">
         <h1>Login</h1>

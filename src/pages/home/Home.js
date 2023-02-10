@@ -4,6 +4,9 @@ import './Home.css'
 // context
 import { useAuthContext } from '../../hooks/useAuthContext'
 
+// components
+import ExploreUsers from '../../components/ExploreUsers'
+
 
 export default function Home() {
 
@@ -18,8 +21,8 @@ export default function Home() {
       </div>
 
       <div className="main-content-container">
-        <div className="browse-users-container">
-
+        <div className="explore-users-container">
+          <ExploreUsers />
         </div>
         <div className="news-feed-container">
 

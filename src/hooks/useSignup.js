@@ -42,10 +42,12 @@ export const useSignup = () => {
             console.log(userObject)
 
             await projectFirestore.collection('userProfiles').doc(res.user.uid).set(userObject)
+
+            const userProfileDocument = await projectFirestore.collection('userProfiles').doc(res.user.uid).get()
             
             ///////////////////////////////
 
-            dispatch({ type: 'LOGIN', payload: res.user})
+            dispatch({ type: 'LOGIN', payload: { ...res.user, ...userProfileDocument.data() } })
 
             if (!isCancelled) {
                 setIsPending(false)
