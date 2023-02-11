@@ -56,7 +56,17 @@ export default function Profile() {
       {error && <h1>{error}</h1>}
       {isLoading && <h1>Loading...</h1>}
       {userProfile && 
-      <h1>{userProfile.firstName} {userProfile.lastName}</h1>}
+      <div>
+        <div className="cover-photo"></div>
+        <div className="user-info">
+          <div className="profile-avatar"></div>
+          <div className="user-info-text">
+            <h1>{userProfile.firstName} {userProfile.lastName}</h1>
+            <p>{userProfile.age} - Originally from {userProfile.hometown}.</p>
+            <p>Currently lives in {userProfile.currentCity}</p>
+          </div>
+        </div>
+      </div>}
     </div>
   )
 }

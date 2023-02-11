@@ -1,0 +1,30 @@
+.cover-photo {
+    background-color: beige;
+    height: 30vh;
+    width: 100%;
+}
+
+.profile-avatar {
+    height: 200px;
+    width: 200px;
+    background-color: lightblue;
+    border-radius: 100%;
+}
+
+.user-info {
+    display: flex;
+    justify-content: center;
+    margin-top: -100px;
+}
+
+.user-info-text {
+    padding: 100px 0 0 15px;
+}
+
+.user-info-text h1 {
+    padding: 0;
+}
+
+.user-info-text p {
+    padding: 1px 0;
+}

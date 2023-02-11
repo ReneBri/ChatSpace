@@ -14,8 +14,8 @@ export default function NewsfeedPosts() {
 
     const { user } = useAuthContext()
     const { documents, error } = useCollection(
-        'newsfeedPosts',
-        ["posterId", "==", user.uid])
+        'newsfeedPosts')
+        // ,["posterId", "==", user.uid])
     console.log(user.uid)
 
   return (
