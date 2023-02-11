@@ -30,7 +30,9 @@ export default function PostNewsUpdate() {
     }
 
     addDocument(postObject)
-    console.log(error)
+      .then(() => {
+        setNewsUpdate('')
+      })
 
   }
 

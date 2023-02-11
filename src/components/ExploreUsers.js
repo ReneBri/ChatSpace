@@ -6,8 +6,8 @@ import { projectFirestore } from '../config/config'
 
 // hooks
 import { useEffect, useState } from 'react'
-
 import { useAuthContext } from '../hooks/useAuthContext'
+import { useNavigate } from "react-router-dom";
 
 export default function ExploreUsers() {
 
@@ -46,6 +46,15 @@ export default function ExploreUsers() {
     useEffect(() => {
         getUserProfiles()  
     }, [])
+
+
+
+    // create links for each profile
+    let navigate = useNavigate(); 
+    const routeChange = (userProfileUrl) =>{ 
+        let path = `/userProfile/${userProfileUrl}`; 
+        navigate(path);
+      }
     
 
     
@@ -56,7 +65,7 @@ export default function ExploreUsers() {
         </div>
         <div className="explore-users-main-content">
             {!isLoading && userProfiles.map((user) => {
-                return <div className="user-profile-thumbnail" key={user.userId}>
+                return <div className="user-profile-thumbnail" onClick={() => routeChange(user.userProfileUrl)} key={user.userId}>
                         <div className="user-thumbnail-img">
                         </div>
                         <div className="user-thumbnail-text">

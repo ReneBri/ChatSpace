@@ -1,0 +1,22 @@
+.newsfeed-post-wrapper {
+    min-height: 100px;
+    width: 100%;
+    background-color: rgb(231, 248, 255);
+    margin: 7px 0;
+    border-radius: 5px;
+}
+
+.newsfeed-post-content {
+    padding: 5px;
+}
+
+.newsfeed-post-wrapper h3 {
+    padding: 0;
+}
+
+.newsfeed-post-header {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 5px;
+    background-color: rgb(219, 234, 240);
+}
