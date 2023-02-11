@@ -56,7 +56,7 @@ export default function ExploreUsers() {
         </div>
         <div className="explore-users-main-content">
             {!isLoading && userProfiles.map((user) => {
-                return <div className="user-profile-thumbnail">
+                return <div className="user-profile-thumbnail" key={user.userId}>
                         <div className="user-thumbnail-img">
                         </div>
                         <div className="user-thumbnail-text">

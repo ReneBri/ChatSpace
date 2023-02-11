@@ -1,0 +1,8 @@
+.news-update-wrapper {
+    padding: 10px;
+}
+
+.news-update-wrapper form {
+    display: grid;
+    grid-template-columns: 8fr 1fr;
+}

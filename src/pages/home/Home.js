@@ -6,6 +6,7 @@ import { useAuthContext } from '../../hooks/useAuthContext'
 
 // components
 import ExploreUsers from '../../components/ExploreUsers'
+import PostNewsUpdate from '../../components/PostNewsUpdate'
 
 
 export default function Home() {
@@ -25,7 +26,10 @@ export default function Home() {
           <ExploreUsers />
         </div>
         <div className="news-feed-container">
-
+          <div className="newsfeed-header">
+            <p>Newsfeed</p>
+          </div>
+          <PostNewsUpdate />
         </div>
         <div className="friends-list-container">
           

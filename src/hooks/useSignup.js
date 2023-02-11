@@ -39,8 +39,7 @@ export const useSignup = () => {
                 email
             }
 
-            console.log(userObject)
-
+            // create a new userProfile document in Firestore
             await projectFirestore.collection('userProfiles').doc(res.user.uid).set(userObject)
 
             const userProfileDocument = await projectFirestore.collection('userProfiles').doc(res.user.uid).get()
@@ -63,6 +62,8 @@ export const useSignup = () => {
     }
 
     // cleanup function
+    // the only reason we need clean up functions isnt because of updating Firebase,
+    // its so we dont update the local state
     useEffect(() => {
         return () => {setIsCancelled(true)}
     }, [])
