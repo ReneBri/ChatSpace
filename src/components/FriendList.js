@@ -1,5 +1,5 @@
-// styles 
-import './ExploreUsers.css'
+// styles
+import './FriendList.css'
 
 // config
 import { projectFirestore } from '../config/config'
@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 import { useAuthContext } from '../hooks/useAuthContext'
 import { useNavigate } from "react-router-dom";
 
-export default function ExploreUsers() {
+export default function FriendList() {
 
     const { user } = useAuthContext()
 
@@ -17,34 +17,34 @@ export default function ExploreUsers() {
 
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
-    const [userProfiles, setUserProfiles] = useState([])
+    const [friendProfiles, setFriendProfiles] = useState([])
 
-    const getUserProfiles = async () => {
+    const getFriendProfiles = async () => {
 
         setIsLoading(true)
         setError(null)
 
        try{
-        const tempUserArray = []
+        const tempFriendArray = []
 
-        const snapshot = await projectFirestore.collection('userProfiles').where("userId", "not-in", user.friendList).get()
+        const snapshot = await projectFirestore.collection('userProfiles').where("userId", "in", user.friendList).get()
         snapshot.forEach(doc => {
-            tempUserArray.push(doc.data())
+            tempFriendArray.push(doc.data())
         })
         
-        setUserProfiles(tempUserArray)
+        setFriendProfiles(tempFriendArray)
         setIsLoading(false)
 
        }
        catch (err) {
-        setError("error is ", err.message)
+        setError("err")
         console.log(error)
        }
         
     }
     
     useEffect(() => {
-        getUserProfiles()  
+        getFriendProfiles()  
     }, [])
 
 
@@ -61,10 +61,10 @@ export default function ExploreUsers() {
   return (
     <div>
         <div className="explore-users-header">
-            <p>Explore Users</p>
+            <p>Friends List</p>
         </div>
         <div className="explore-users-main-content">
-            {!isLoading && userProfiles.map((user) => {
+            {!isLoading && friendProfiles.map((user) => {
                 return <div className="user-profile-thumbnail" onClick={() => routeChange(user.userProfileUrl)} key={user.userId}>
                         <div className="user-thumbnail-img">
                         </div>

@@ -8,6 +8,7 @@ import { useAuthContext } from '../../hooks/useAuthContext'
 import ExploreUsers from '../../components/ExploreUsers'
 import PostNewsUpdate from '../../components/PostNewsUpdate'
 import NewsfeedPosts from '../../components/NewsfeedPosts'
+import FriendList from '../../components/FriendList'
 
 
 export default function Home() {
@@ -34,7 +35,7 @@ export default function Home() {
           <NewsfeedPosts />
         </div>
         <div className="friends-list-container">
-          
+          <FriendList />
         </div>
       </div>
     </div>
