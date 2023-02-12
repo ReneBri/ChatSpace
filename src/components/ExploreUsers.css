@@ -4,6 +4,7 @@
 }
 
 .user-profile-thumbnail {
+    position: relative;
     display: flex;
     flex-direction: row;
     padding: 10px;
@@ -34,4 +35,11 @@
 
 .user-thumbnail-text p {
     font-size: .8em;
+}
+
+.thumbnail-add-friend-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    border-bottom-right-radius: 10px;
 }

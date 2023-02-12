@@ -16,7 +16,7 @@ export default function NewsfeedPosts() {
     const { documents, error } = useCollection(
         'newsfeedPosts')
         // ,["posterId", "==", user.uid])
-    console.log(user.uid)
+    // console.log(user.uid)
 
   return (
     <>

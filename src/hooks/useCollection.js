@@ -1,8 +1,11 @@
 import { useEffect, useState, useRef } from 'react'
 import { projectFirestore } from '../config/config'
+import { useAuthContext } from './useAuthContext'
 
 
 export const useCollection = (collection, _query) => {
+
+    // const { user } = useAuthContext()
 
     const [documents, setDocuments] = useState(null)
     const [error, setError] = useState(null)
@@ -38,3 +41,5 @@ export const useCollection = (collection, _query) => {
 
     return { documents, error }
 }
+
+// maybe I need to update user - look at this - https://stackoverflow.com/questions/70214878/react-usestate-and-firebase-onsnapshot

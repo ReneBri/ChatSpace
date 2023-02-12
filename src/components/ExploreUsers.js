@@ -8,45 +8,35 @@ import { projectFirestore } from '../config/config'
 import { useEffect, useState } from 'react'
 import { useAuthContext } from '../hooks/useAuthContext'
 import { useNavigate } from "react-router-dom";
+import { useCollection } from '../hooks/useCollection'
+import { useAddFriend } from '../hooks/useAddFriend'
 
 export default function ExploreUsers() {
 
     const { user } = useAuthContext()
 
-    // console.log(user.uid)
-
-    const [isLoading, setIsLoading] = useState(true)
+    const [documents, setDocuments] = useState(null)
     const [error, setError] = useState(null)
-    const [userProfiles, setUserProfiles] = useState([])
 
-    const getUserProfiles = async () => {
-
-        setIsLoading(true)
-        setError(null)
-
-       try{
-        const tempUserArray = []
-
-        const snapshot = await projectFirestore.collection('userProfiles').where("userId", "not-in", user.friendList).get()
-        snapshot.forEach(doc => {
-            tempUserArray.push(doc.data())
-        })
-        
-        setUserProfiles(tempUserArray)
-        setIsLoading(false)
-
-       }
-       catch (err) {
-        setError("error is ", err.message)
-        console.log(error)
-       }
-        
-    }
-    
     useEffect(() => {
-        getUserProfiles()  
-    }, [])
 
+        let ref = projectFirestore.collection('userProfiles').where("userId", "not-in", user.friendList)
+
+            const unsubscribe = ref.onSnapshot((querySnapshot) => {
+                let friends = []
+                querySnapshot.forEach((doc) => {
+                    friends.push(doc.data())
+                })
+                setDocuments(friends)
+                setError(null)
+            }, (err) => {
+                setError(err.message)
+            })
+            return () => unsubscribe()
+        
+    }, [user.friendList])
+    
+    const {isPending, addFriendError, addFriend } = useAddFriend()
 
 
     // create links for each profile
@@ -64,15 +54,19 @@ export default function ExploreUsers() {
             <p>Explore Users</p>
         </div>
         <div className="explore-users-main-content">
-            {!isLoading && userProfiles.map((user) => {
-                return <div className="user-profile-thumbnail" onClick={() => routeChange(user.userProfileUrl)} key={user.userId}>
+            {error && <p>{error}</p>}
+            {!documents && <p>Loading...</p>}
+            {documents && documents.map((profile) => {
+                return <div className="user-profile-thumbnail" key={profile.userId}>
                         <div className="user-thumbnail-img">
                         </div>
                         <div className="user-thumbnail-text">
-                            <h3>{user.firstName} {user.lastName}</h3>
-                            <span><b><i>{user.hometown}</i></b></span>
-                            <p>{user.status}</p>
+                            <h3 onClick={() => routeChange(profile.userProfileUrl)}>{profile.firstName} {profile.lastName}</h3>
+                            <span><b><i>{profile.hometown}</i></b></span>
+                            <p>{profile.status}</p>
+                            
                         </div>
+                            <button className="thumbnail-add-friend-btn" onClick={() => addFriend(user.uid, profile.userId)}>add friend</button>
                        </div>
             })}
         </div>
