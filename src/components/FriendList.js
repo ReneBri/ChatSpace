@@ -8,9 +8,8 @@ import { projectFirestore } from '../config/config'
 import { useEffect, useState } from 'react'
 import { useAuthContext } from '../hooks/useAuthContext'
 import { useNavigate } from "react-router-dom";
-import { useCollection } from '../hooks/useCollection'
 
-export default function FriendList() {
+export default function FriendList(props) {
 
     const { user } = useAuthContext()
 
@@ -19,7 +18,10 @@ export default function FriendList() {
 
     useEffect(() => {
 
-        let ref = projectFirestore.collection('userProfiles').where("userId", "in", user.friendList)
+        if(props.dbq3.length === 0){
+
+        }else{
+            let ref = projectFirestore.collection('userProfiles').where(props.databaseQuery, props.dbq2, props.dbq3)
 
             const unsubscribe = ref.onSnapshot((querySnapshot) => {
                 let friends = []
@@ -32,8 +34,11 @@ export default function FriendList() {
                 setError(err.message)
             })
             return () => unsubscribe()
+        }
         
-    }, [user.friendList])
+       
+        
+    }, [props.dbq3])
 
 
     // create links for each profile
@@ -52,6 +57,7 @@ export default function FriendList() {
         </div>
         <div className="explore-users-main-content">
             {error && <p>{error}</p>}
+            {!documents && <p>No friends yet. Be their first?</p>}
             {documents && documents.map((user) => {
                 return <div className="user-profile-thumbnail" onClick={() => routeChange(user.userProfileUrl)} key={user.userId}>
                         <div className="user-thumbnail-img">

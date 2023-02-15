@@ -8,7 +8,6 @@ import { projectFirestore } from '../config/config'
 import { useEffect, useState } from 'react'
 import { useAuthContext } from '../hooks/useAuthContext'
 import { useNavigate } from "react-router-dom";
-import { useCollection } from '../hooks/useCollection'
 import { useAddFriend } from '../hooks/useAddFriend'
 
 export default function ExploreUsers() {
@@ -20,7 +19,8 @@ export default function ExploreUsers() {
 
     useEffect(() => {
 
-        let ref = projectFirestore.collection('userProfiles').where("userId", "not-in", user.friendList)
+        if (user.friendList.length !== 0){
+            let ref = projectFirestore.collection('userProfiles').where("userId", "not-in", user.friendList)
 
             const unsubscribe = ref.onSnapshot((querySnapshot) => {
                 let friends = []
@@ -33,6 +33,8 @@ export default function ExploreUsers() {
                 setError(err.message)
             })
             return () => unsubscribe()
+        }
+        
         
     }, [user.friendList])
     

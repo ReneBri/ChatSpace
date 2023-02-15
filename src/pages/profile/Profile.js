@@ -4,14 +4,24 @@ import './Profile.css'
 // hooks
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { useAuthContext } from '../../hooks/useAuthContext'
+import { useAddFriend } from '../../hooks/useAddFriend'
 
 // config
 import { projectFirestore } from '../../config/config'
+
+// components
+import FriendList from '../../components/FriendList'
+
 
 
 export default function Profile() {
 
   const params = useParams()
+
+  const { user } = useAuthContext()
+
+  const { isPending, addFriendError, addFriend } = useAddFriend()
 
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
@@ -47,9 +57,9 @@ export default function Profile() {
 
   useEffect(() => {
     fetchProfile(params.profileUrl)
-  }, [])
+  }, [user.friendList])
   
-  console.log(userProfile)
+  // console.log(userProfile)
 
   return (
     <div>
@@ -57,15 +67,18 @@ export default function Profile() {
       {isLoading && <h1>Loading...</h1>}
       {userProfile && 
       <div>
-        <div className="cover-photo"></div>
+        <div className="cover-photo">
+        </div>
         <div className="user-info">
           <div className="profile-avatar"></div>
           <div className="user-info-text">
             <h1>{userProfile.firstName} {userProfile.lastName}</h1>
             <p>{userProfile.age} - Originally from {userProfile.hometown}.</p>
             <p>Currently lives in {userProfile.currentCity}</p>
+            {!user.friendList.includes(userProfile.userId) && <button onClick={() => {addFriend(user.userId, userProfile.userId)}}>add friend</button>}
           </div>
         </div>
+        <FriendList databaseQuery="userId" dbq2="in" dbq3={userProfile.friendList}/>
       </div>}
     </div>
   )

@@ -13,29 +13,41 @@ export const useAddFriend = () => {
     const [addFriendError, setAddFriendError] = useState(null)
     const [isCancelled, setIsCancelled] = useState(false)
 
+    let tempFriendList = []
+
     const { user, dispatch } = useAuthContext()
+
+    const getAndUpdateCollection = async (docToUpdate, friendToAdd) => {
+        const response = await projectFirestore.collection('userProfiles').doc(docToUpdate).get()
+        if(response.exists){
+            console.log("doc: ", response.data())
+            if(!response.data().friendList.includes(friendToAdd)){
+                let friendList = response.data().friendList
+                friendList = [ ...friendList, friendToAdd]
+                await projectFirestore.collection('userProfiles').doc(docToUpdate).update({ friendList })
+                console.log("Document sucessfully changed")
+                tempFriendList = friendList
+                console.log(user)
+            }
+        }else{
+            console.log("no such document for: ", docToUpdate)
+        }
+        
+    }
 
     const addFriend = async (userId, newFriendId) => {
         try{
             setIsPending(true)
             setAddFriendError(null)
 
-            const response = await projectFirestore.collection('userProfiles').doc(userId).get()
-            if(response.exists){
-                console.log("doc: ", response.data())
-            }else{
-                console.log("no such document for: ", userId)
-            }
-            let friendList = response.data().friendList
-            // console.log(friendList)
-            friendList = [ ...friendList, newFriendId]
-            await projectFirestore.collection('userProfiles').doc(userId).update({ friendList })
-            console.log("Document sucessfully changed")
-            user.friendList = friendList
+            await getAndUpdateCollection(userId, newFriendId)
+            user.friendList = tempFriendList
+            await getAndUpdateCollection(newFriendId, userId)
+            
 
             if (!isCancelled) {
                 dispatch({ type: 'ADD_FRIEND', payload: user })
-                console.log(user)
+                
                 setIsPending(false)
                 setAddFriendError(null)
             }

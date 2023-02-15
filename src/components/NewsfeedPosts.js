@@ -13,10 +13,8 @@ import { useCollection } from '../hooks/useCollection'
 export default function NewsfeedPosts() {
 
     const { user } = useAuthContext()
-    const { documents, error } = useCollection(
-        'newsfeedPosts')
-        // ,["posterId", "==", user.uid])
-    // console.log(user.uid)
+    const { documents, error } = useCollection('newsfeedPosts')
+
 
   return (
     <>

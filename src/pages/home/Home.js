@@ -35,7 +35,7 @@ export default function Home() {
           <NewsfeedPosts />
         </div>
         <div className="friends-list-container">
-          <FriendList />
+          <FriendList databaseQuery="userId" dbq2="in" dbq3={user.friendList}/>
         </div>
       </div>
     </div>
