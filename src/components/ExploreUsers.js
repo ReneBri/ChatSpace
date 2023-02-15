@@ -59,7 +59,7 @@ export default function ExploreUsers() {
             {error && <p>{error}</p>}
             {!documents && <p>Loading...</p>}
             {documents && documents.map((profile) => {
-                return <div className="user-profile-thumbnail" key={profile.userId}>
+                return profile.userId != user.userId ? <div className="user-profile-thumbnail" key={profile.userId}>
                         <div className="user-thumbnail-img">
                         </div>
                         <div className="user-thumbnail-text">
@@ -70,6 +70,7 @@ export default function ExploreUsers() {
                         </div>
                             <button className="thumbnail-add-friend-btn" onClick={() => addFriend(user.uid, profile.userId)}>add friend</button>
                        </div>
+                       : <></>
             })}
         </div>
     </div>

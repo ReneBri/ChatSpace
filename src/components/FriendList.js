@@ -58,16 +58,17 @@ export default function FriendList(props) {
         <div className="explore-users-main-content">
             {error && <p>{error}</p>}
             {!documents && <p>No friends yet. Be their first?</p>}
-            {documents && documents.map((user) => {
-                return <div className="user-profile-thumbnail" onClick={() => routeChange(user.userProfileUrl)} key={user.userId}>
+            {documents && documents.map((friend) => {
+                return user.userId != friend.userId ? <div className="user-profile-thumbnail" onClick={() => routeChange(friend.userProfileUrl)} key={user.userId}>
                         <div className="user-thumbnail-img">
                         </div>
                         <div className="user-thumbnail-text">
-                            <h3>{user.firstName} {user.lastName}</h3>
-                            <span><b><i>{user.hometown}</i></b></span>
-                            <p>{user.status}</p>
+                            <h3>{friend.firstName} {friend.lastName}</h3>
+                            <span><b><i>{friend.hometown}</i></b></span>
+                            <p>{friend.status}</p>
                         </div>
                        </div>
+                       : <></>
             })}
         </div>
     </div>
