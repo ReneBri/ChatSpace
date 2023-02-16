@@ -59,8 +59,9 @@ export default function FriendList(props) {
             {error && <p>{error}</p>}
             {!documents && <p>No friends yet. Be their first?</p>}
             {documents && documents.map((friend) => {
-                return user.userId != friend.userId ? <div className="user-profile-thumbnail" onClick={() => routeChange(friend.userProfileUrl)} key={user.userId}>
+                return <div className="user-profile-thumbnail" onClick={() => routeChange(friend.userProfileUrl)} key={user.userId}>
                         <div className="user-thumbnail-img">
+                        <img src={friend.avatarUrl} />
                         </div>
                         <div className="user-thumbnail-text">
                             <h3>{friend.firstName} {friend.lastName}</h3>
@@ -68,7 +69,6 @@ export default function FriendList(props) {
                             <p>{friend.status}</p>
                         </div>
                        </div>
-                       : <></>
             })}
         </div>
     </div>
