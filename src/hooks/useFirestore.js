@@ -64,13 +64,35 @@ export const useFirestore = (collection) => {
                 setError("ERROR: ", err.message)
             }
         }
-        
+
+
     }
+        const addComment = async (docId, newComments) => {
+            setIsPending(true)
+            setError(null)
+
+            console.log(5)
+            try {
+                await ref.doc(docId).update({comments: newComments}) 
+                console.log(5)
+                if (!isCancelled) {
+                    setIsPending(false)
+                    setError(null)
+                }
+            }
+            catch (err) {
+                if (!isCancelled) {
+                    setIsPending(false)
+                    setError("ERROR: ", err.message)
+                }
+            }
+        }
+    
 
     // clean up funtion
     useEffect(() => {
         return () => setIsCancelled(true)
     }, [])
 
-    return { isPending, error, addDocument, updateDocument }
+    return { isPending, error, addDocument, updateDocument, addComment }
 }

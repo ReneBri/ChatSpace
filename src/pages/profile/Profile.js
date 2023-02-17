@@ -58,7 +58,7 @@ export default function Profile() {
 
   useEffect(() => {
     fetchProfile(params.profileUrl)
-  }, [user.friendList])
+  }, [user.friendList, params.profileUrl])
   
   // console.log(userProfile)
 

@@ -10,6 +10,7 @@ import { useAuthContext } from '../hooks/useAuthContext'
 import { useCollection } from '../hooks/useCollection'
 import { useDeletePost } from '../hooks/useDeletePost'
 import { useFirestore } from '../hooks/useFirestore'
+import PostNewsUpdate from './PostNewsUpdate'
 
 
 export default function NewsfeedPosts({ collection, query, orderBy }) {
@@ -18,10 +19,33 @@ export default function NewsfeedPosts({ collection, query, orderBy }) {
     const { deletePost } = useDeletePost()
     const { documents, error } = useCollection(collection, query, orderBy)
     const [newComment, setNewComment] = useState('')
-    const { updateDocument } = useFirestore('newsfeedPosts')
+    const { updateDocument, addComment } = useFirestore('newsfeedPosts')
 
-    const handleNewComment = (e) => {
+    const handleNewComment = (e, docId, prevComments) => {
+
         e.preventDefault()
+
+        let newCommentArray = []
+
+        let tempNewComment = {
+            comment: newComment,
+            commenterName: user.firstName + " " + user.lastName,
+            dateAdded: "Date goes here"
+        }
+
+        if(prevComments){
+            newCommentArray = [ ...prevComments, tempNewComment ]
+            console.log(newCommentArray)
+        } else {
+            newCommentArray = [ tempNewComment ]
+            console.log(newCommentArray)
+        }
+
+        addComment(docId, newCommentArray)
+
+        setNewComment('')
+
+        e.target.reset()
 
     }
 
@@ -46,10 +70,10 @@ export default function NewsfeedPosts({ collection, query, orderBy }) {
                 <div className="comment-wrapper">
                     <div className="comment-header">
                         {!post.showComments ? 
-                            <p onClick={() => {updateDocument(post.id, post.showComments, "showComments")}}>read comments</p>
-                            : <p onClick={() => {updateDocument(post.id, post.showComments, "showComments")}}>hide comments</p>}
+                            <p onClick={() => {updateDocument(post.id, post.showComments, "showComments")}}>read comments {post.comments && post.comments.length > 0 ? "(" + post.comments.length + ")" : '(0)'}</p>
+                            : <p onClick={() => {updateDocument(post.id, post.showComments, "showComments")}}>hide comments {post.comments && post.comments.length > 0 ? "(" + post.comments.length + ")" : '0'}</p>}
                         <p className="breakspace"> | </p>
-                        {!post.showCommentBox ? <p onClick={() => {updateDocument(post.id, post.showCommentBox, "showCommentbox")}}>leave a comment</p>
+                        {!post.showCommentBox ? <p onClick={() => {updateDocument(post.id, post.showCommentBox, "showCommentbox")}}>leave a comment </p>
                         : <p onClick={() => {updateDocument(post.id, post.showCommentBox, "showCommentBox")}}>hide comment box</p>}
                     </div>
                     {post.showComments && post.comments && post.comments.map((comment) => (
@@ -61,12 +85,11 @@ export default function NewsfeedPosts({ collection, query, orderBy }) {
                     ))}
                     {post.showCommentBox &&     
                     <div className="news-update-wrapper">
-                        <form>
+                        <form onSubmit={(e) => {handleNewComment(e, post.id, post.comments)}}>
                             <textarea 
                                 onChange={(e) => {setNewComment(e.target.value)}}
-                                value={newComment}
                                 rows="6"
-                                placeholder="What's on your mind?"
+                                placeholder="What do you think about this?"
                                 required
                             />
                             <button>Submit</button>
