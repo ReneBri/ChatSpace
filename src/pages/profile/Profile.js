@@ -70,7 +70,9 @@ export default function Profile() {
         <div className="cover-photo">
         </div>
         <div className="user-info">
-          <div className="profile-avatar"></div>
+          <div className="profile-avatar">
+            <img src={userProfile.avatarUrl} alt="user profile avatar" />
+          </div>
           <div className="user-info-text">
             <h1>{userProfile.firstName} {userProfile.lastName}</h1>
             <p>{userProfile.age} - Originally from {userProfile.hometown}.</p>

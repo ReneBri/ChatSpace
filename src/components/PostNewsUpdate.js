@@ -4,6 +4,7 @@ import './PostNewsUpdate.css'
 // hooks
 import { useState } from 'react'
 import { useFirestore } from '../hooks/useFirestore'
+import { useGetDate } from '../hooks/useGetDate'
 
 // context
 import { useAuthContext } from '../hooks/useAuthContext'
@@ -14,6 +15,8 @@ import { timestamp } from '../config/config'
 
 export default function PostNewsUpdate() {
 
+  const date = useGetDate()
+  
   const [newsUpdate, setNewsUpdate] = useState('')
 
   const { isPending, error, addDocument } = useFirestore('newsfeedPosts')
@@ -26,6 +29,8 @@ export default function PostNewsUpdate() {
         content: newsUpdate,
         posterName: `${user.firstName} ${user.lastName}`,
         posterId: user.uid,
+        posterAvatarUrl: user.avatarUrl,
+        readableTimestamp: date,
         createdAt: timestamp.fromDate(new Date())
     }
 

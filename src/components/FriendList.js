@@ -61,7 +61,7 @@ export default function FriendList(props) {
             {documents && documents.map((friend) => {
                 return <div className="user-profile-thumbnail" onClick={() => routeChange(friend.userProfileUrl)} key={user.userId}>
                         <div className="user-thumbnail-img">
-                        <img src={friend.avatarUrl} />
+                        <img src={friend.avatarUrl} alt="user profile avatar" />
                         </div>
                         <div className="user-thumbnail-text">
                             <h3>{friend.firstName} {friend.lastName}</h3>

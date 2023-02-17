@@ -61,7 +61,7 @@ export default function ExploreUsers() {
             {documents && documents.map((profile) => {
                 return profile.userId != user.userId ? <div className="user-profile-thumbnail" key={profile.userId}>
                         <div className="user-thumbnail-img">
-                            <img src={profile.avatarUrl} />
+                            <img src={profile.avatarUrl} alt="user profile avatar" />
                         </div>
                         <div className="user-thumbnail-text">
                             <h3 onClick={() => routeChange(profile.userProfileUrl)}>{profile.firstName} {profile.lastName}</h3>

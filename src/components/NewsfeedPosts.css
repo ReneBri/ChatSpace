@@ -14,9 +14,33 @@
     padding: 0;
 }
 
+.newsfeed-post-wrapper .delete {
+    position: absolute;
+    top: 2px;
+    right: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.newsfeed-post-wrapper span {
+    font-size: .7em;
+    font-weight: 600;
+}
+
 .newsfeed-post-header {
+    background-color: rgb(219, 234, 240);
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.newsfeed-post-header img {
+    height: 50px;
+    margin-top: 5px;
+}
+
+.newsfeed-post-header-text {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     padding: 5px;
-    background-color: rgb(219, 234, 240);
 }
