@@ -30,6 +30,7 @@ export default function PostNewsUpdate() {
         posterName: `${user.firstName} ${user.lastName}`,
         posterId: user.uid,
         posterAvatarUrl: user.avatarUrl,
+        posterUrl: user.userProfileUrl,
         readableTimestamp: date,
         createdAt: timestamp.fromDate(new Date())
     }

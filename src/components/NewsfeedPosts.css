@@ -44,3 +44,20 @@
     border-top-right-radius: 5px;
     padding: 5px;
 }
+
+.comment-wrapper {
+    background-color: rgb(229, 241, 246);
+}
+
+.comment-header {
+    text-align: right;
+    padding: 5px;
+}
+
+.comment-header p {
+    display: inline-block;
+}
+
+.comment-header .breakspace {
+    padding: 0 7px;
+}
