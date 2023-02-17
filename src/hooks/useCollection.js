@@ -3,7 +3,7 @@ import { projectFirestore } from '../config/config'
 import { useAuthContext } from './useAuthContext'
 
 
-export const useCollection = (collection, _query) => {
+export const useCollection = (collection, _query, _orderBy) => {
 
     // const { user } = useAuthContext()
 
@@ -12,12 +12,17 @@ export const useCollection = (collection, _query) => {
 
     // if we don't use a ref then an infinite loop will happen in use effect
     const query = useRef(_query).current
+    const orderBy = useRef(_orderBy).current
 
     useEffect(() => {
         let ref = projectFirestore.collection(collection)
 
         if(query) {
             ref = ref.where(...query)
+        }
+
+        if (orderBy) {
+            ref = ref.orderBy(...orderBy)
         }
 
         const unsubscribe = ref.onSnapshot((snapshot) => {

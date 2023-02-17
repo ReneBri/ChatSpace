@@ -15,7 +15,7 @@ export default function NewsfeedPosts() {
 
     const { user } = useAuthContext()
     const { deletePost } = useDeletePost()
-    const { documents, error } = useCollection('newsfeedPosts')
+    const { documents, error } = useCollection('newsfeedPosts', null, ["createdAt", "desc"])
 
 
   return (
