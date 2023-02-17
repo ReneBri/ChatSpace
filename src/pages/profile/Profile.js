@@ -12,6 +12,7 @@ import { projectFirestore } from '../../config/config'
 
 // components
 import FriendList from '../../components/FriendList'
+import NewsfeedPosts from '../../components/NewsfeedPosts'
 
 
 
@@ -80,7 +81,21 @@ export default function Profile() {
             {!user.friendList.includes(userProfile.userId) && <button onClick={() => {addFriend(user.userId, userProfile.userId)}}>add friend</button>}
           </div>
         </div>
-        <FriendList databaseQuery="userId" dbq2="in" dbq3={userProfile.friendList}/>
+
+        <div className="main-content-container">
+          <div className="friends-list-container">
+            <div className="explore-users-header">
+              <p>{userProfile.firstName}'s Friends</p>
+            </div>
+            <FriendList databaseQuery="userId" dbq2="in" dbq3={userProfile.friendList} is />
+          </div>
+          <div className="news-feed-container">
+          <div className="newsfeed-header">
+            <p>{userProfile.firstName}'s Posts</p>
+          </div>
+            <NewsfeedPosts collection='newsfeedPosts' query={["posterId", "==", userProfile.userId]} orderBy={["createdAt", "desc"]}/>
+          </div>
+        </div>
       </div>}
     </div>
   )

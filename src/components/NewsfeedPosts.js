@@ -11,17 +11,17 @@ import { useCollection } from '../hooks/useCollection'
 import { useDeletePost } from '../hooks/useDeletePost'
 
 
-export default function NewsfeedPosts() {
+export default function NewsfeedPosts({ collection, query, orderBy }) {
 
     const { user } = useAuthContext()
     const { deletePost } = useDeletePost()
-    const { documents, error } = useCollection('newsfeedPosts', null, ["createdAt", "desc"])
+    const { documents, error } = useCollection(collection, query, orderBy)
 
 
   return (
     <>
         {/* {isPending && <p>isPending</p>} */}
-        {error && <p>Error</p>}
+        {error && <p>{error}</p>}
         {documents && documents.map((post) => (
             <div className="newsfeed-post-wrapper" key={post.id}>
                 <div className="newsfeed-post-header">
@@ -37,6 +37,7 @@ export default function NewsfeedPosts() {
                 </div>
             </div>
         ))}
+        {documents && documents.length === 0 && <p>No posts to show</p>}
     </>
   )
 }

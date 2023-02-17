@@ -24,19 +24,26 @@ export default function Home() {
       </div>
 
       <div className="main-content-container">
+
         <div className="explore-users-container">
           <ExploreUsers />
         </div>
+
         <div className="news-feed-container">
           <div className="newsfeed-header">
             <p>Newsfeed</p>
           </div>
           <PostNewsUpdate />
-          <NewsfeedPosts />
+          <NewsfeedPosts collection='newsfeedPosts' query={null} orderBy={["createdAt", "desc"]} />
         </div>
+
         <div className="friends-list-container">
+          <div className="explore-users-header">
+            <p>Your Friends</p>
+          </div>
           <FriendList databaseQuery="userId" dbq2="in" dbq3={user.friendList}/>
         </div>
+        
       </div>
     </div>
   )

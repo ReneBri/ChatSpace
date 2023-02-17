@@ -6,6 +6,7 @@ import { projectFirestore } from '../config/config'
 
 // hooks
 import { useEffect, useState } from 'react'
+import React from 'react'
 import { useAuthContext } from '../hooks/useAuthContext'
 import { useNavigate } from "react-router-dom";
 import { useAddFriend } from '../hooks/useAddFriend'
@@ -19,8 +20,26 @@ export default function ExploreUsers() {
 
     useEffect(() => {
 
+        // use the if/else statement becasue we cannot pass firebase an empty array
         if (user.friendList.length !== 0){
+
             let ref = projectFirestore.collection('userProfiles').where("userId", "not-in", user.friendList)
+
+            const unsubscribe = ref.onSnapshot((querySnapshot) => {
+                let friends = []
+                querySnapshot.forEach((doc) => {
+                    friends.push(doc.data())
+                })
+                setDocuments(friends)
+                setError(null)
+            }, (err) => {
+                setError(err.message)
+            })
+            return () => unsubscribe()
+            
+        } else {
+
+            let ref = projectFirestore.collection('userProfiles')
 
             const unsubscribe = ref.onSnapshot((querySnapshot) => {
                 let friends = []
@@ -59,7 +78,7 @@ export default function ExploreUsers() {
             {error && <p>{error}</p>}
             {!documents && <p>Loading...</p>}
             {documents && documents.map((profile) => {
-                return profile.userId != user.userId ? <div className="user-profile-thumbnail" key={profile.userId}>
+                return profile.userId !== user.userId ? <div className="user-profile-thumbnail" key={profile.userId}>
                         <div className="user-thumbnail-img">
                             <img src={profile.avatarUrl} alt="user profile avatar" />
                         </div>
@@ -71,7 +90,7 @@ export default function ExploreUsers() {
                         </div>
                             <button className="thumbnail-add-friend-btn" onClick={() => addFriend(user.uid, profile.userId)}>add friend</button>
                        </div>
-                       : <></>
+                       : <React.Fragment key={profile.userId}></React.Fragment>
             })}
         </div>
     </div>
