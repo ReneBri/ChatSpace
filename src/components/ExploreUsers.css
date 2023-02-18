@@ -11,7 +11,6 @@
     align-items: center;
     border-bottom: 1px solid rgba(0, 0, 0, 0.07);
     border-bottom-right-radius: 20px;
-    cursor: pointer;
 }
 
 .user-thumbnail-img {
@@ -28,6 +27,7 @@
 
 .user-thumbnail-text h3 {
     padding: 0;
+    cursor: pointer;
 }
 
 .user-thumbnail-text span {

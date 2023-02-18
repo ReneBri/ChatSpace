@@ -65,7 +65,7 @@ export default function FriendList(props) {
                         </div>
                         <div className="user-thumbnail-text">
                             <h3 onClick={() => routeChange(friend.userProfileUrl)} >{friend.firstName} {friend.lastName}</h3>
-                            <span><b><i>{friend.hometown}</i></b></span>
+                            <span>{friend.hometown}</span>
                             <p>{friend.status}</p>
                         </div>
                        </div>

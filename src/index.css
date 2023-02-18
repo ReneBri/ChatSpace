@@ -11,6 +11,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Rubik', sans-serif;
 }
 
 code {
@@ -28,11 +29,26 @@ h1 {
 
 h2, h3 {
   padding: 5px;
+  font-weight: 600;
+}
+
+span {
+  font-weight: 500;
 }
 
 button {
-  margin: 5px;
-  padding: 2px;
+  background-color: lightblue;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  text-shadow: 0px 0px 3px rgba(0, 0, 0, .5);
+  color: white;
+  padding: 2px 5px;
+  margin: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 a {

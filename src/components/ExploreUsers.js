@@ -84,7 +84,7 @@ export default function ExploreUsers() {
                         </div>
                         <div className="user-thumbnail-text">
                             <h3 onClick={() => routeChange(profile.userProfileUrl)}>{profile.firstName} {profile.lastName}</h3>
-                            <span><b><i>{profile.hometown}</i></b></span>
+                            <span>{profile.hometown}</span>
                             <p>{profile.status}</p>
                             
                         </div>
