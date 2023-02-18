@@ -11,6 +11,7 @@ import { useCollection } from '../hooks/useCollection'
 import { useDeletePost } from '../hooks/useDeletePost'
 import { useFirestore } from '../hooks/useFirestore'
 import PostNewsUpdate from './PostNewsUpdate'
+import { useGetDate } from '../hooks/useGetDate'
 
 
 export default function NewsfeedPosts({ collection, query, orderBy }) {
@@ -21,6 +22,8 @@ export default function NewsfeedPosts({ collection, query, orderBy }) {
     const [newComment, setNewComment] = useState('')
     const { updateDocument, addComment } = useFirestore('newsfeedPosts')
 
+    let dateForComment = useGetDate()
+
     const handleNewComment = (e, docId, prevComments) => {
 
         e.preventDefault()
@@ -30,7 +33,7 @@ export default function NewsfeedPosts({ collection, query, orderBy }) {
         let tempNewComment = {
             comment: newComment,
             commenterName: user.firstName + " " + user.lastName,
-            dateAdded: "Date goes here"
+            dateAdded: dateForComment
         }
 
         if(prevComments){

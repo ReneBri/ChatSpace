@@ -1,6 +1,34 @@
+.welcome-container {
+    max-height: 40vh;
+    overflow: hidden;
+    background-image: linear-gradient(to right, rgba(173, 216, 230, 0.545), rgb(239, 239, 239));
+    padding: 10px 150px;
+    margin-bottom: 10px;
+}
+
+.welcome-container h3 {
+    margin-left: 65px;
+}
+
+.bg-img {
+    height: 41vh;
+}
+
+.welcome-content-wrapper {
+    max-width: 1500px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    margin: auto;
+    align-items: center;
+}
+
 .main-content-container {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
+    max-width: 2000px;
+    margin: auto;
 }
 
 .news-feed-container {

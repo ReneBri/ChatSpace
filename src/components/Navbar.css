@@ -5,7 +5,7 @@
 
 .nav-bar nav {
     width: 80%;
-    max-width: 1000px;
+    max-width: 2000px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

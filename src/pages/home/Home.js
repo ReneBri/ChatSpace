@@ -20,7 +20,13 @@ export default function Home() {
     <div className="main-wrapper">
 
       <div className="welcome-container">
-        <h1>Welcome Back, {user.firstName}</h1>
+        <div className="welcome-content-wrapper">
+          <div>
+            <h1>Welcome Back, {user.firstName}!</h1>
+            <h3>Pssst, we've missed you!</h3>
+          </div>
+          <img className="bg-img" src="/spaceman-logo.png"/>
+        </div>
       </div>
 
       <div className="main-content-container">

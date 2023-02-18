@@ -47,17 +47,47 @@
 
 .comment-wrapper {
     background-color: rgb(229, 241, 246);
+    
 }
 
 .comment-header {
     text-align: right;
     padding: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.7);
 }
 
 .comment-header p {
     display: inline-block;
+    cursor: pointer;
 }
 
 .comment-header .breakspace {
     padding: 0 7px;
+    cursor: default;
+}
+
+.comment-content {
+    border-top: 3px solid rgba(255, 255, 255, 0.7);
+    border-left: 4px solid rgba(0, 0, 0, 0.6);
+    padding: 5px 5px 5px 12px;
+    margin-left: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-content h3, span, p {
+    padding: 1px;
+}
+
+.comment-content h3 {
+    font-size: 1em;
+}
+
+.comment-content span {
+    font-size: .6em;
+}
+
+.comment-content p {
+    font-size: .85em;
+    padding: 4px 2px;
 }
