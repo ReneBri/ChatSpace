@@ -1,5 +1,8 @@
-import { useState } from 'react'
+// styles
 import './AboutUser.css'
+
+// hooks
+import { useState } from 'react'
 
 
 export default function AboutUser({ userProfile }) {

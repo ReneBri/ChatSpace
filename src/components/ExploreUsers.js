@@ -3,10 +3,10 @@ import './ExploreUsers.css'
 
 // config
 import { projectFirestore } from '../config/config'
+import React from 'react'
 
 // hooks
 import { useEffect, useState } from 'react'
-import React from 'react'
 import { useAuthContext } from '../hooks/useAuthContext'
 import { useNavigate } from "react-router-dom";
 import { useAddFriend } from '../hooks/useAddFriend'

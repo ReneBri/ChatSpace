@@ -45,6 +45,10 @@
     padding: 5px;
 }
 
+.newsfeed-post-header-text h3 {
+    cursor: pointer;
+}
+
 .comment-wrapper {
     background-color: rgb(229, 241, 246);
     
@@ -88,6 +92,7 @@
 
 .comment-content h3 {
     font-size: 1em;
+    cursor: pointer;
 }
 
 .comment-content span {

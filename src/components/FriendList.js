@@ -6,8 +6,11 @@ import { projectFirestore } from '../config/config'
 
 // hooks
 import { useEffect, useState } from 'react'
-import { useAuthContext } from '../hooks/useAuthContext'
 import { useNavigate } from "react-router-dom";
+
+// context
+import { useAuthContext } from '../hooks/useAuthContext'
+
 
 export default function FriendList(props) {
 

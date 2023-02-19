@@ -19,7 +19,7 @@ export default function Navbar() {
   return (
     <div className="nav-bar">
         <nav>
-            <Link to="/"><h3>Twitter</h3></Link>
+            <Link to="/"><h3>ChatSpace</h3></Link>
             <ul>
                 {!user && 
                 <>
