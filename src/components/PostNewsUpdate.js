@@ -49,7 +49,7 @@ export default function PostNewsUpdate() {
             <textarea 
                 onChange={(e) => setNewsUpdate(e.target.value)}
                 value={newsUpdate}
-                maxlength="400"
+                maxLength="400"
                 rows="6"
                 placeholder="What's on your mind?"
                 required

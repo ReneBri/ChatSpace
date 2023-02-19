@@ -7,6 +7,9 @@ export const AuthContext = createContext()
 export const authReducer = (state, action) => {
     switch (action.type) {
 
+        case 'UPDATE_STATUS':
+            return { ...state, user: action.payload }
+
         case 'ADD_FRIEND':
             return { ...state, user: action.payload }
 

@@ -85,7 +85,7 @@ export default function NewsfeedPosts({ collection, query, orderBy }) {
                             <p onClick={() => {updateDocument(post.id, post.showComments, "showComments")}}>read comments {post.comments && post.comments.length > 0 ? "(" + post.comments.length + ")" : '(0)'}</p>
                             : <p onClick={() => {updateDocument(post.id, post.showComments, "showComments")}}>hide comments {post.comments && post.comments.length > 0 ? "(" + post.comments.length + ")" : '0'}</p>}
                         <p className="breakspace"> | </p>
-                        {!post.showCommentBox ? <p onClick={() => {updateDocument(post.id, post.showCommentBox, "showCommentbox")}}>leave a comment </p>
+                        {!post.showCommentBox ? <p onClick={() => {updateDocument(post.id, post.showCommentBox, "showCommentBox")}}>leave a comment </p>
                         : <p onClick={() => {updateDocument(post.id, post.showCommentBox, "showCommentBox")}}>hide comment box</p>}
                     </div>
                     {post.showComments && post.comments && post.comments.map((comment) => (
@@ -102,7 +102,7 @@ export default function NewsfeedPosts({ collection, query, orderBy }) {
                             <textarea 
                                 onChange={(e) => {setNewComment(e.target.value)}}
                                 rows="3"
-                                maxlength="400"
+                                maxLength="400"
                                 placeholder="What do you think about this?"
                                 required
                             />

@@ -9,11 +9,25 @@ import ExploreUsers from '../../components/ExploreUsers'
 import PostNewsUpdate from '../../components/PostNewsUpdate'
 import NewsfeedPosts from '../../components/NewsfeedPosts'
 import FriendList from '../../components/FriendList'
+import { useFirestore } from '../../hooks/useFirestore'
+import { useState } from 'react'
 
 
 export default function Home() {
 
-  const { user } = useAuthContext()
+  const { user, dispatch } = useAuthContext()
+
+  const { error, updateStatus } = useFirestore('userProfiles')
+
+  const [status, setStatus] = useState('')
+
+  const handleStatusSubmit = async (e) => {
+    e.preventDefault()
+    await updateStatus(user.userId, status)
+    user.status = status
+    dispatch({ type: 'UPDATE_STATUS', payload: user})
+    setStatus('')
+  }
 
 
   return (
@@ -21,12 +35,27 @@ export default function Home() {
 
       <div className="welcome-container">
         <div className="welcome-content-wrapper">
-          <div>
+          <div className="welcome-content-text-wrapper">
             <h1>Welcome Back, {user.firstName}!</h1>
             <h3>Pssst, we've missed you!</h3>
           </div>
           <img className="bg-img" src="/spaceman-logo.png"/>
         </div>
+        <div className="status-container">
+        <p>Your status is set to: <i>{user.status}</i></p>
+          <form onSubmit={handleStatusSubmit}>
+              <input 
+                type="text"
+                onChange={(e) =>{
+                  setStatus(e.target.value)}}
+                value={status} 
+                required
+                maxLength="10"
+                size="10"
+                />
+              <button className="status-btn">update status</button>
+            </form>
+          </div>
       </div>
 
       <div className="main-content-container">
