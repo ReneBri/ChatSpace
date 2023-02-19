@@ -33,3 +33,7 @@
 .user-info-text p {
     padding: 1px 0;
 }
+
+.profile-add-friend-btn {
+    border-radius: 3px;
+}

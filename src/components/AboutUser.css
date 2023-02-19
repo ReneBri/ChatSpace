@@ -20,6 +20,10 @@
     cursor: pointer;
 }
 
+.about-user-content {
+    font-weight: 300;
+}
+
 .about-user-content ul {
     list-style: none;
 }

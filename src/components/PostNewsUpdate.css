@@ -1,8 +1,19 @@
 .news-update-wrapper {
-   
+    padding: 5px 5px 0 5px;
+}
+
+.news-update-wrapper button {
+   margin: 0;
 }
 
 .news-update-wrapper form {
     display: grid;
     grid-template-columns: 8fr 1fr;
+    grid-column-gap: 5px;
+}
+
+.news-update-wrapper textarea {
+    resize: none;
+    padding: 5px 7px;
+    font-size: 1.2em;
 }

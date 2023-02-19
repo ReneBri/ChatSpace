@@ -50,6 +50,13 @@
     
 }
 
+.news-update-wrapper .comment-form {
+    padding-left: 10px;
+    margin-left: 7px;
+    border-left: 4px solid rgba(0, 0, 0, 0.6);
+    border-top: 3px solid rgba(255, 255, 255, 0.7);
+}
+
 .comment-header {
     text-align: right;
     padding: 5px;

@@ -81,7 +81,7 @@ export default function Profile() {
             <p>Currently lives in {userProfile.currentCity}</p>
             {!user.friendList.includes(userProfile.userId) &&
             user.userId !== userProfile.userId && 
-            <button onClick={() => {addFriend(user.userId, userProfile.userId)}}>add friend</button>}
+            <button className="profile-add-friend-btn" onClick={() => {addFriend(user.userId, userProfile.userId)}}>add friend</button>}
           </div>
         </div>
 

@@ -88,14 +88,14 @@ export default function NewsfeedPosts({ collection, query, orderBy }) {
                     ))}
                     {post.showCommentBox &&     
                     <div className="news-update-wrapper">
-                        <form onSubmit={(e) => {handleNewComment(e, post.id, post.comments)}}>
+                        <form className="comment-form" onSubmit={(e) => {handleNewComment(e, post.id, post.comments)}}>
                             <textarea 
                                 onChange={(e) => {setNewComment(e.target.value)}}
-                                rows="6"
+                                rows="3"
                                 placeholder="What do you think about this?"
                                 required
                             />
-                            <button>Submit</button>
+                            <button>Reply</button>
                         </form>
                     </div>}
                 </div>
