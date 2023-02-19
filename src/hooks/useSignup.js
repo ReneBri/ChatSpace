@@ -36,7 +36,10 @@ export const useSignup = () => {
                 friendList: [],
                 coverPhotoUrl: "",
                 isOnline: true,
-                email
+                email,
+                avatarUrl: '/avatar-adventurer-9.png',
+                about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse felis dolor, tincidunt eget pellentesque tristique, laoreet ac ante. Donec feugiat a sapien id vehicula. Aenean maximus eros nunc, et finibus sapien pretium ut. Maecenas tristique non massa id cursus. Nullam tincidunt quam eget turpis dapibus lacinia. Proin id leo laoreet, mattis nibh non, molestie erat. Suspendisse potenti. Sed at ullamcorper lorem. Phasellus dignissim consectetur quam.',
+                userProfileUrl: firstName + lastName
             }
 
             // create a new userProfile document in Firestore

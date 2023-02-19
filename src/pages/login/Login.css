@@ -1,0 +1,8 @@
+.avatar-container {
+    padding-top: 12px;
+    border-top: 1px solid rgba(0, 0, 0, 0.2)
+}
+
+.login-wrapper form {
+    padding-bottom: 12px
+}

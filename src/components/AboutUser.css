@@ -22,6 +22,7 @@
 
 .about-user-content {
     font-weight: 300;
+    overflow: hidden;
 }
 
 .about-user-content ul {

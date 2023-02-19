@@ -20,6 +20,16 @@ export default function Login() {
     login(email, password)
   }
 
+  const handleSignInAsAvatar = (inputEmail) => {
+    setEmail(inputEmail)
+    setPassword(inputEmail)
+    setTimeout(() => {
+      login(inputEmail, inputEmail)
+    }, 750)
+    
+
+  }
+
   return (
     <div className="login-wrapper signup-wrapper">
 
@@ -52,8 +62,22 @@ export default function Login() {
 
         {!isPending && <button>Login</button>}
         {isPending && <button disabled>loading...</button>}
-        {error && <p>{error}</p>}
+        {error && <p>{error.message}</p>}
+
       </form>
+
+      
+      <div className="avatar-container">
+        <h2> Orrrr </h2>
+        <h3>Sign-in as a guest by clicking on one of these names</h3>
+        <button onClick={(e) => handleSignInAsAvatar('daisie@daisie.com')}>Daisie</button>
+        <button onClick={(e) => handleSignInAsAvatar('Francheskia@Francheskia.com')}>Francheskia</button>
+        <button onClick={(e) => handleSignInAsAvatar('anni@anni.com')}>Anni</button>
+        <button onClick={(e) => handleSignInAsAvatar('Bobby@bobby.com')}>Bobby Lee</button>
+        <button onClick={(e) => handleSignInAsAvatar('ben@ben.com')}>Ben</button>
+        <button onClick={(e) => handleSignInAsAvatar('Rebecca@Rebecca.com')}>Rebecca</button>
+        <button onClick={(e) => handleSignInAsAvatar('tim@tim.com')}>Tim</button>
+      </div>
     </div>
   )
 }
