@@ -1,0 +1,37 @@
+
+.active {
+    text-decoration: underline;
+    font-weight: 500;
+}
+
+.about-user-main-wrapper {
+    padding: 10px 15px 10px 10px;
+}
+
+.about-user-options {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2)
+}
+
+.about-user-options p {
+    display: inline-block;
+    margin-bottom: 5px;
+    margin-right: 25px;
+    line-height: 1.3em;
+    cursor: pointer;
+}
+
+.about-user-content ul {
+    list-style: none;
+}
+
+.about-user-content li {
+    padding: 5px 0;
+    letter-spacing: .09em;
+
+}
+
+.about-user-content p {
+    padding: 5px 0;
+    line-height: 1.3em;
+    letter-spacing: .09em;
+}

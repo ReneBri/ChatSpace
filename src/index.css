@@ -55,3 +55,7 @@ a {
   text-decoration: none;
   color: black;
 }
+
+p, a, span {
+  letter-spacing: .02em;
+}
